@@ -1,39 +1,29 @@
 import { createMachine, setup, stateIn } from "xstate";
 
-export const lightsMachine = createMachine({
+export const exampleMachine = createMachine({
   types: {
     events: {} as { type: "TOGGLE" },
   },
-  initial: "off",
+  initial: "idle",
   states: {
-    off: {
+    idle: {
       on: {
-        TOGGLE: { target: "on", guard: stateIn("on") },
-      },
-    },
-    on: {
-      on: {
-        TOGGLE: { target: "off" },
+        TOGGLE: { guard: stateIn("idle") },
       },
     },
   },
 });
 
-export const lightsMachineWithSetup = setup({
+export const exampleMachineWithSetup = setup({
   types: {
     events: {} as { type: "TOGGLE" },
   },
 }).createMachine({
-  initial: "off",
+  initial: "idle",
   states: {
-    off: {
+    idle: {
       on: {
-        TOGGLE: { target: "on", guard: stateIn("on") },
-      },
-    },
-    on: {
-      on: {
-        TOGGLE: { target: "off" },
+        TOGGLE: { guard: stateIn("idle") },
       },
     },
   },

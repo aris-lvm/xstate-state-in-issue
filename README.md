@@ -1,15 +1,26 @@
 # xstate-state-in-issue
 
-To install dependencies:
+This example uses [Bun](https://bun.sh). Make sure it's set up and then run:
 
-```bash
-bun install
+```sh
+bun install # to set up dependencies
+
+npx tsc --noEmit # to get the error message
 ```
 
-To run:
+You should expect to see such output:
 
-```bash
-bun run index.ts
+```sh
+➜  xstate-state-in-issue git:(main) ✗ npx tsc --noEmit
+index.ts:46:13 - error TS2322: Type '{ target: string; guard: GuardPredicate<MachineContext, { type: "TOGGLE"; }, undefined, any>; }' is not assignable to type 'TransitionConfigOrTarget<MachineContext, { type: "TOGGLE"; }, { type: "TOGGLE"; }, never, never, never, never, EventObject, MetaObject>'.
+  Types of property 'guard' are incompatible.
+    Type 'GuardPredicate<MachineContext, { type: "TOGGLE"; }, undefined, any>' is not assignable to type 'GuardPredicate<MachineContext, { type: "TOGGLE"; }, undefined, never>'.
+      Type 'any' is not assignable to type 'never'.
+
+46             TOGGLE: { target: "on", guard: stateIn({ first: "on" }) },
+               ~~~~~~
+
+
+Found 1 error in index.ts:46
+
 ```
-
-This project was created using `bun init` in bun v1.2.20. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.

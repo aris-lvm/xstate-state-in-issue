@@ -8,7 +8,7 @@ export const lightsMachine = createMachine({
   states: {
     off: {
       on: {
-        TOGGLE: { target: "on", guard: stateIn({ first: "on" }) },
+        TOGGLE: { target: "on", guard: stateIn("on") },
       },
     },
     on: {
@@ -28,7 +28,7 @@ export const lightsMachineWithSetup = setup({
   states: {
     off: {
       on: {
-        TOGGLE: { target: "on", guard: stateIn({ first: "on" }) },
+        TOGGLE: { target: "on", guard: stateIn("on") },
       },
     },
     on: {
